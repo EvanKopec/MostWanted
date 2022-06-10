@@ -193,6 +193,20 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
-function searchByTraits(){
-    
+function searchByTrait(people){
+    let userInputProp = prompt("Please enter what specific trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation");
+    let userInputVal = prompt("Please enter the value you would like to search for.");
+    let results = people.filter(
+        function (person){
+            if(person[userInputProp] === userInputVal || +userInputVal === person[userInputProp]){
+                return true;
+            }
+        }
+    );
+    return results;
+}
+
+
+function findPersonSpouse(){
+
 }
