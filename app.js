@@ -290,6 +290,9 @@ function searchByTraits(people){
         case "dob":
             results = searchByDOB(people);
             break;
+        case "height":
+            results = searchByHeight(people);
+            break;
     }
 }
 
@@ -310,6 +313,18 @@ function searchByDOB(people){
     let results = people.filter(
         function(person){
             if(userInput === person.dob){
+                return true;
+            }
+        }
+    );
+    return results
+}
+
+function searchByHeight(people){
+    let userInput = prompt("Please enter height using numbers only:");
+    let results = people.filter(
+        function(person){
+            if(userInput === person.height){
                 return true;
             }
         }
