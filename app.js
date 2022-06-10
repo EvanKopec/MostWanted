@@ -88,7 +88,7 @@ function mainMenu(person, people) {
             // Stop application execution
             return;
         case "test":
-
+            findPersonSpouse(person[0], people)
             break;
         default:
             // Prompt user again. Another instance of recursion
@@ -124,7 +124,7 @@ function searchByName(people) {
  * @param {Array} people        A collection of person objects.
  */
 function displayPeople(people) {
-    alert(
+    return(
         people
             .map(function (person) {
                 return `${person.firstName} ${person.lastName}`;
@@ -207,6 +207,54 @@ function searchByTrait(people){
 }
 
 
-function findPersonSpouse(){
+function findPersonSpouse(person, people){
+    let personFound = person
+    let personFoundSpouse = people.filter(
+        function (person){
+            if(personFound.currentSpouse === person.id){
+                return true
+            }
+        }
+    );
+    return personFoundSpouse
+}
 
+function findPersonParents(person, people){
+    let personFound = person
+    let personFoundParents = people.filter(
+        function (person){
+            if(personFound.parents === person.id){
+                return true
+            }
+        }
+    );
+    return personFoundParents
+}
+
+function findPersonSiblings(person, people){
+    let personFound = person
+    let personFoundSiblings = people.filter(
+        function (person){
+            if(personFound.currentSpouse === person.id){
+                return true
+            }
+        }
+    );
+    return personFoundSiblings
+}
+
+function findPersonFamily(person, people){
+    let foundSpouseArray = findPersonSpouse(person, people)
+    let foundParentsArray = findPersonParents(person, people)
+    let foundSiblingsArray = findPersonSiblings(person, people)
+    // stringifing family 
+    let foundSpouseString = displayPeople(foundSpouseArray) // "Spouse: Billy Bob"
+    let foundParentsString = displayPeople(foundParentsArray) // "Billy Bob\nUma Bob"
+    let foundSiblingsString = displayPeople(foundSiblingsArray)
+
+    let relationSpouseString = `Spouse: ${foundSpouseString}\n`
+    let relationParentsString = `Parents: ${foundParentsString}\n`
+    let relationSiblingsString = `Siblings: ${foundSiblingsString}\n`
+
+    return relationSpouseString + relationParentsString + relationSiblingsString
 }
