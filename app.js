@@ -296,6 +296,9 @@ function searchByTraits(people){
         case "weight":
             results = searchByWeight(people);
             break;
+        case "eyeColor":
+            results = searchByEyeColor(people)
+            break;
     }
 }
 
@@ -346,3 +349,16 @@ function searchByWeight(people){
     );
     return results
 }
+
+function searchByEyeColor(people){
+    let userInput = prompt("Please enter the eye color:\ngreen\nbrown\nblack\nblue\nhazel");
+    let results = people.filter(
+        function(person){
+            if(userInput === person.eyeColor){
+                return true;
+            }
+        }
+    );
+    return results;
+};
+
