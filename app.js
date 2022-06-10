@@ -223,7 +223,7 @@ function findPersonParents(person, people){
     let personFound = person
     let personFoundParents = people.filter(
         function (person){
-            if(personFound.parents === person.id){
+            if(personFound.parents[0] === person.id || personFound.parents[1] === person.id){
                 return true
             }
         }
@@ -235,7 +235,7 @@ function findPersonSiblings(person, people){
     let personFound = person
     let personFoundSiblings = people.filter(
         function (person){
-            if(personFound.currentSpouse === person.id){
+            if(personFound.lastName === person.lastName &&  ){
                 return true
             }
         }
