@@ -293,6 +293,9 @@ function searchByTraits(people){
         case "height":
             results = searchByHeight(people);
             break;
+        case "weight":
+            results = searchByWeight(people);
+            break;
     }
 }
 
@@ -325,6 +328,18 @@ function searchByHeight(people){
     let results = people.filter(
         function(person){
             if(userInput === person.height){
+                return true;
+            }
+        }
+    );
+    return results
+}
+
+function searchByWeight(people){
+    let userInput = prompt("Please enter weight using numbers only:");
+    let results = people.filter(
+        function(person){
+            if(userInput === person.weight){
                 return true;
             }
         }
