@@ -287,6 +287,9 @@ function searchByTraits(people){
         case "gender":
             results = searchByGender(people);
             break;
+        case "dob":
+            results = searchByDOB(people);
+            break;
     }
 }
 
@@ -299,6 +302,17 @@ function searchByGender(people){
             }
         }
     );
-    console.log(results);
+    return results
+}
+
+function searchByDOB(people){
+    let userInput = prompt("Please enter DOB in the format mm/dd/yyyy:");
+    let results = people.filter(
+        function(person){
+            if(userInput === person.dob){
+                return true;
+            }
+        }
+    );
     return results
 }
