@@ -280,3 +280,25 @@ function findPersonDescendants(person, people){
 }
 
 
+function searchByTraits(people){
+    let userInput = prompt("Please enter what specific trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation:")
+    let results;
+    switch (userInput) {
+        case "gender":
+            results = searchByGender(people);
+            break;
+    }
+}
+
+function searchByGender(people){
+    let userInput = prompt("Please select a gender to search by:\nmale\nfemale");
+    let results = people.filter(
+        function(person){
+            if(userInput === person.gender){
+                return true;
+            }
+        }
+    );
+    console.log(results);
+    return results
+}
