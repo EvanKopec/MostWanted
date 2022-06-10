@@ -66,8 +66,7 @@ function mainMenu(person, people) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
-            let personInfo = displayPerson(person[0]);
-            alert(personInfo);
+         displayPerson(person[0]);
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
@@ -88,6 +87,9 @@ function mainMenu(person, people) {
         case "quit":
             // Stop application execution
             return;
+        case "test":
+
+            break;
         default:
             // Prompt user again. Another instance of recursion
             return mainMenu(person, people);
@@ -140,7 +142,13 @@ function displayPeople(people) {
 function displayPerson(person) {
     let personInfo = `First Name: ${person.firstName}\n`;
     personInfo += `Last Name: ${person.lastName}\n`;
-    //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
+    personInfo += `Gender: ${person.gender}\n`;
+    personInfo += `DOB: ${person.dob}\n`;
+    personInfo += `Height: ${person.height}\n`;
+    personInfo += `Weight: ${person.weight}\n`;
+    personInfo += `Eye Color: ${person.eyeColor}\n`;
+    personInfo += `Occupation: ${person.occupation}\n`;
+    //! TODO #1a: finish getting the rest of the information to display ////////////////////////////////////////// Dont need parents or currentspouse here.
     alert(personInfo);
 }
 // End of displayPerson()
@@ -184,3 +192,7 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function searchByTraits(){
+    
+}
