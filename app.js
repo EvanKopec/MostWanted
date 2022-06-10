@@ -258,3 +258,25 @@ function findPersonFamily(person, people){
 
     return relationSpouseString + relationParentsString + relationSiblingsString
 }
+
+function findPersonChildren(person, people){
+    let personFound = person
+    let personFoundDescendants = people.filter(
+        function (person){
+            if(person.parents.includes(personFound.id)){
+                return true
+            }
+        }
+    );
+    return personFoundDescendants
+}
+
+function findPersonDescendants(person, people){
+    let foundChildrenArray = findPersonChildren(person, people)
+
+    let foundChildrenString = displayPeople(foundChildrenArray)
+
+    return foundChildrenString
+}
+
+
