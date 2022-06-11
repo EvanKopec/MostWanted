@@ -58,7 +58,7 @@ function mainMenu(person, people) {
         // Restarts app() from the very beginning
         return app(people);
     }
-    let displayOption = prompt(
+    let displayOption = promptFor(
         `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     );
     // Routes our application based on the user's input
@@ -193,18 +193,10 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
-function searchByTraits(people){
-
-}
-
-
-
-
-
 
 function searchByTrait(people){
-    let userInputProp = prompt("Please enter what specific trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation");
-    let userInputVal = prompt("Please enter the value you would like to search for.");
+    let userInputProp = promptFor("Please enter what specific trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation");
+    let userInputVal = promptFor("Please enter the value you would like to search for.");
     let results = people.filter(
         function (person){
             if(person[userInputProp] === userInputVal || +userInputVal === person[userInputProp]){
@@ -290,7 +282,7 @@ function findPersonDescendants(person, people){
 
 
 function searchByMultiTraits(people){
-    let userInput = prompt("Please enter what trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation:")
+    let userInput = promptFor("Please enter what trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation:")
     switch (userInput) {
         case "gender":
             getGender = searchByGender(people);
@@ -310,11 +302,15 @@ function searchByMultiTraits(people){
         case "occupation":
             getOccupation = searchByOccupation(people)
             return getOccupation;
+        default:
+            alert("That's not a option, Try again!")
+            searchByMultiTraits(people);
+            break;
     }
 }
 
 function searchByGender(people){
-    let userInput = prompt("Please select a gender to search by:\nmale\nfemale");
+    let userInput = promptFor("Please select a gender to search by:\nmale\nfemale");
     let results = people.filter(
         function(person){
             if(userInput === person.gender){
@@ -326,7 +322,7 @@ function searchByGender(people){
 }
 
 function searchByDOB(people){
-    let userInput = prompt("Please enter DOB in the format mm/dd/yyyy:");
+    let userInput = promptFor("Please enter DOB in the format mm/dd/yyyy:");
     let results = people.filter(
         function(person){
             if(userInput === person.dob){
@@ -338,7 +334,7 @@ function searchByDOB(people){
 }
 
 function searchByHeight(people){
-    let userInput = prompt("Please enter height using numbers only:");
+    let userInput = promptFor("Please enter height using numbers only:");
     let results = people.filter(
         function(person){
             if(userInput === person.height){
@@ -350,7 +346,7 @@ function searchByHeight(people){
 }
 
 function searchByWeight(people){
-    let userInput = prompt("Please enter weight using numbers only:");
+    let userInput = promptFor("Please enter weight using numbers only:");
     let results = people.filter(
         function(person){
             if(userInput === person.weight){
@@ -362,7 +358,7 @@ function searchByWeight(people){
 }
 
 function searchByEyeColor(people){
-    let userInput = prompt("Please enter the eye color:\ngreen\nbrown\nblack\nblue\nhazel");
+    let userInput = promptFor("Please enter the eye color:\ngreen\nbrown\nblack\nblue\nhazel");
     let results = people.filter(
         function(person){
             if(userInput === person.eyeColor){
@@ -374,7 +370,7 @@ function searchByEyeColor(people){
 };
 
 function searchByOccupation(people){
-    let userInput = prompt("Please enter the occupation:\nassistant\nnurse\ndoctor\nlandscaper\nstudent\nprogrammer\npolitican\narchitect");
+    let userInput = promptFor("Please enter the occupation:\nassistant\nnurse\ndoctor\nlandscaper\nstudent\nprogrammer\npolitican\narchitect");
     let results = people.filter(
         function(person){
             if(userInput === person.occupation){
@@ -386,13 +382,19 @@ function searchByOccupation(people){
 };
 
 function searchBySingleOrMultiTrait(people){
-    let userInput = prompt("Search using multiple or single trait? Press 1 for single or 2 for multiple:");
+    let userInput = promptFor("Search using multiple or single trait? Press 1 for single or 2 for multiple:");
     switch (userInput){
         case "1":
             results = searchByTrait(people);
             break;
         case "2":
             results = searchByMultiTraits(people);
+            displayPeople(results);
+            while(results.length > 1){
+                alert("Pick another trait to get better results:\ngender\ndob\nheight\nweight\neyeColor\noccupation");
+                results = searchByMultiTraits(results);
+                displayPeople(results);
+            }
             break;
         default:
             searchBySingleOrMultiTrait();
@@ -404,10 +406,3 @@ function searchBySingleOrMultiTrait(people){
 
 
 
-// searchResults = searchByMultiTraits(people);
-// displayPeople(searchResults);
-// while(searchResults.length > 1){
-//     alert("Pick another trait to get better results:\ngender\ndob\nheight\nweight\neyeColor\noccupation")
-//     searchResults = searchByMultiTraits(searchResults);
-//     displayPeople(searchResults);
-// }
