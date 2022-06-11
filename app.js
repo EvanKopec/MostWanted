@@ -31,14 +31,7 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-        
-            searchResults = searchByMultiTraits(people);
-            displayPeople(searchResults);
-            while(searchResults.length > 1){
-                alert("Pick another trait to get better results:\ngender\ndob\nheight\nweight\neyeColor\noccupation")
-                searchResults = searchByMultiTraits(searchResults);
-                displayPeople(searchResults);
-            }
+            searchResults = searchBySingleOrMultiTrait(people)
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -392,3 +385,29 @@ function searchByOccupation(people){
     return results;
 };
 
+function searchBySingleOrMultiTrait(people){
+    let userInput = prompt("Search using multiple or single trait? Press 1 for single or 2 for multiple:");
+    switch (userInput){
+        case "1":
+            results = searchByTrait(people);
+            break;
+        case "2":
+            results = searchByMultiTraits(people);
+            break;
+        default:
+            searchBySingleOrMultiTrait();
+            break;
+        
+    }
+}
+
+
+
+
+// searchResults = searchByMultiTraits(people);
+// displayPeople(searchResults);
+// while(searchResults.length > 1){
+//     alert("Pick another trait to get better results:\ngender\ndob\nheight\nweight\neyeColor\noccupation")
+//     searchResults = searchByMultiTraits(searchResults);
+//     displayPeople(searchResults);
+// }
