@@ -31,7 +31,14 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits(people);
+        
+            searchResults = searchByMultiTraits(people);
+            displayPeople(searchResults);
+            while(searchResults.length > 1){
+                alert("Pick another trait to get better results:\ngender\ndob\nheight\nweight\neyeColor\noccupation")
+                searchResults = searchByMultiTraits(searchResults);
+                displayPeople(searchResults);
+            }
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -88,7 +95,7 @@ function mainMenu(person, people) {
             // Stop application execution
             return;
         case "test":
-            findPersonSpouse(person[0], people)
+            searchByMultiTraits()
             break;
         default:
             // Prompt user again. Another instance of recursion
@@ -193,6 +200,15 @@ function chars(input) {
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
+function searchByTraits(people){
+
+}
+
+
+
+
+
+
 function searchByTrait(people){
     let userInputProp = prompt("Please enter what specific trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation");
     let userInputVal = prompt("Please enter the value you would like to search for.");
@@ -280,28 +296,27 @@ function findPersonDescendants(person, people){
 }
 
 
-function searchByTraits(people){
-    let userInput = prompt("Please enter what specific trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation:")
-    let results;
+function searchByMultiTraits(people){
+    let userInput = prompt("Please enter what trait you would like to search by:\ngender\ndob\nheight\nweight\neyeColor\noccupation:")
     switch (userInput) {
         case "gender":
-            results = searchByGender(people);
-            break;
+            getGender = searchByGender(people);
+            return getGender;
         case "dob":
-            results = searchByDOB(people);
-            break;
+            getDOB = searchByDOB(people);
+            return getDOB;
         case "height":
-            results = searchByHeight(people);
-            break;
+            getHeight = searchByHeight(people);
+            return getHeight;
         case "weight":
-            results = searchByWeight(people);
-            break;
+            getWeight = searchByWeight(people);
+            return getWeight;
         case "eyeColor":
-            results = searchByEyeColor(people)
-            break;
+            getEyeColor = searchByEyeColor(people)
+            return getEyeColor;
         case "occupation":
-            results = searchByOccupation(people)
-            break;
+            getOccupation = searchByOccupation(people)
+            return getOccupation;
     }
 }
 
